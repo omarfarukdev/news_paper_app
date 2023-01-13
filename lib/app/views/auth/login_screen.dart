@@ -48,42 +48,17 @@ class LoginScreen extends StatelessWidget {
                     keyboardType:  TextInputType.phone,
                     controller: controller.phoneController,
                   ),
-                  /* SizedBox(height: 10,),
-                CustomTextField(
-                  hint: 'Password',
-                  obscureText: true,
-                ),*/
                   SizedBox(height: 10,),
                   CustomPasswordField(
                     hint: "Password",
                     obscureText: true,
                     controller: controller.passwordController,
                   ),
-                  /*SizedBox(height: 10,),
-                  Container(
-                    alignment: Alignment.centerRight,
-                    child: Text.rich(
-                      TextSpan(
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xff949494),
-                            fontWeight: FontWeight.w500
-                        ),
-                        text: 'Forgot Password',
-                        recognizer: TapGestureRecognizer()
-                          ..onTap=(){
-                            devicedata.write("type", "forgot");
-                            Get.toNamed(GetRoutes.phone);
-                          },
-                      ),
-                    ),
-                  ),*/
                   SizedBox(height: 20,),
                   CustomButton(
                     label: "Login",
                     onPressed: (){
-                      //controller.CheckLogin();
-                      Get.offNamed(GetRoutes.signup);
+                      controller.CheckLogin(context);
                     },
                   ),
                   SizedBox(height: 20,),
