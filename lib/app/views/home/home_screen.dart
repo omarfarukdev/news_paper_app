@@ -55,7 +55,9 @@ class NewsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async{
-        Get.toNamed(GetRoutes.details,arguments: articles.content);
+        String dates=articles.publishedAt.toString();
+        final date = dates.split('T');
+        Get.toNamed(GetRoutes.details,arguments: [articles.source?.name,articles.author,articles.title,articles.description,articles.url,articles.urlToImage,date[0],articles.content],);
       },
       child: Container(
         width: MediaQuery.of(context).size.width,

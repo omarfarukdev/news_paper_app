@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({Key? key}) : super(key: key);
-
+  DetailsScreen({Key? key}) : super(key: key);
+  var data=Get.arguments;
   @override
   Widget build(BuildContext context) {
     Size size =MediaQuery.of(context).size;
@@ -25,7 +25,7 @@ class DetailsScreen extends StatelessWidget {
                 height: 200,
                 margin: EdgeInsets.all(10),
                 alignment: Alignment.topCenter,
-                child: Image.network("https://s.yimg.com/os/creatr-uploaded-images/2021-10/f7694340-25b2-11ec-bb65-1f3d94c5d6b3",fit: BoxFit.fill,),
+                child: Image.network(data[5],fit: BoxFit.fill,),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,7 +33,7 @@ class DetailsScreen extends StatelessWidget {
                   Row(
                     children: [
                       Icon(Icons.timer_sharp,color: Colors.grey,),
-                      Text(" 12-12-2023",style: TextStyle(color: Colors.grey),),
+                      Text(data[6].toString(),style: TextStyle(color: Colors.grey),),
                     ],
                   ),
                   IconButton(
@@ -45,7 +45,7 @@ class DetailsScreen extends StatelessWidget {
                 ],
               ),
               Text(
-                "Apple TV and Apple Music apps quietly appear on the Microsoft Store",
+                data[2],
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -55,7 +55,7 @@ class DetailsScreen extends StatelessWidget {
               SizedBox(height: 10,),
               Container(
                 height: 40,
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.0),
                   color: Colors.transparent,
@@ -63,12 +63,12 @@ class DetailsScreen extends StatelessWidget {
                       color: Colors.grey
                   ),
                 ),
-                child: Text("data"),
+                child: Text(data[0]),
               ),
               SizedBox(height: 10,),
-              Text("Apple Music and Apple TV apps have quietly arrived as preview versions on Microsoft Windows 11, according to a tweet from @ALumia_Italia seen by Thurrott. It's now possible to download the apps from … [+1341 chars]"),
+              Text(data[7]),
               SizedBox(height: 10,),
-              Text("${Get.arguments}")
+              Text("")
             ],
           ),
         ),
