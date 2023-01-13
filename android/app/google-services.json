@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "61294233291",
+    "project_id": "newspaperapp-ec850",
+    "storage_bucket": "newspaperapp-ec850.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61294233291:android:71059929e6ca97d3a3bd4e",
+        "android_client_info": {
+          "package_name": "com.omar.news_paper_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61294233291-pqr0c7ojb4tn30icf796ljsul622221o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.omar.news_paper_app",
+            "certificate_hash": "279d368583981c3d5709be927679d7591fe7b47c"
+          }
+        },
+        {
+          "client_id": "61294233291-g16vr8tgqqv0enuu4envugp7nspqre4a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAh7wNMY-S8iHBaPG54i0QTk6qkrELJk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61294233291-g16vr8tgqqv0enuu4envugp7nspqre4a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
