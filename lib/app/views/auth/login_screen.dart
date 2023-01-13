@@ -1,9 +1,11 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:news_paper_app/app/controllers/login_controller.dart';
 import 'package:news_paper_app/app/routes/routes.dart';
+import 'package:news_paper_app/app/utils/custom_snackbar.dart';
 import 'package:news_paper_app/app/widgets/custom_button.dart';
 import 'package:news_paper_app/app/widgets/custom_password_field.dart';
 import 'package:news_paper_app/app/widgets/custom_textfield.dart';
@@ -12,7 +14,7 @@ class LoginScreen extends StatelessWidget {
    LoginScreen({Key? key}) : super(key: key);
    final loginController = Get.put(LoginController());
    final devicedata = GetStorage();
-
+   final dararef = FirebaseDatabase.instance.ref("post");
   @override
   Widget build(BuildContext context) {
     return Scaffold(

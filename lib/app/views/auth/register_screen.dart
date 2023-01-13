@@ -61,7 +61,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 10,),
                   CustomPasswordField(
-                    hint: 'Passord',
+                    hint: 'Password',
                     obscureText: true,
                     controller: controller.passwordController,
                   ),

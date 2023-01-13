@@ -16,12 +16,7 @@ class RegisterController extends GetxController{
       companyNameController,
       addressController,
       passwordController,
-      confirmPasswordController,
-      oneOtpController,
-      twoOtpController,
-      threeOtpController,
-      fourOtpController,
-      fiveOtpController,sixOtpController;
+      confirmPasswordController;
 
   @override
   void onInit() {
@@ -35,12 +30,6 @@ class RegisterController extends GetxController{
     addressController =TextEditingController();
     passwordController =TextEditingController();
     confirmPasswordController =TextEditingController();
-    oneOtpController = TextEditingController();
-    twoOtpController = TextEditingController();
-    threeOtpController = TextEditingController();
-    fourOtpController = TextEditingController();
-    fiveOtpController = TextEditingController();
-    sixOtpController = TextEditingController();
   }
   @override
   void onClose() {
@@ -53,12 +42,6 @@ class RegisterController extends GetxController{
     companyNameController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
-    oneOtpController.dispose();
-    twoOtpController.dispose();
-    threeOtpController.dispose();
-    fourOtpController.dispose();
-    fiveOtpController.dispose();
-    sixOtpController.dispose();
   }
   checkSignup(){
     if(usernameController.text.isEmpty){
@@ -96,27 +79,10 @@ class RegisterController extends GetxController{
       verificationFailed: (FirebaseAuthException e) {},
       codeSent: (String verificationId, int? resendToken) {
         verifyId=verificationId;
-        Get.offNamed(GetRoutes.phone,arguments: verificationId);
+        Get.offNamed(GetRoutes.phone,arguments: [verificationId,usernameController.text.toString(),phone,emailController.text.toString(),addressController.text.toString(),passwordController.text.toString()]);
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
     );
   }
-  checkVerify(){
-    otp=oneOtpController.text.toString()+twoOtpController.text.toString()+threeOtpController.text.toString()+fourOtpController.text.toString()+fiveOtpController.text.toString()+sixOtpController.text.toString();
-    if(oneOtpController.text.isEmpty||twoOtpController.text.isEmpty||threeOtpController.text.isEmpty||fourOtpController.text.isEmpty||fiveOtpController.text.isEmpty||sixOtpController.text.isEmpty){
-      CustomSnackbar("Error", "Invalid OTP", "error");
-    }
-    else{
-      Get.showOverlay(asyncFunction: ()=>VerifyOTP(),loadingWidget: Loader());
-    }
-  }
-
-  VerifyOTP() async{
-    FirebaseAuth auth = FirebaseAuth.instance;
-    PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verifyId, smsCode: otp);
-    // Sign the user in (or link) with the credential
-    await auth.signInWithCredential(credential);
-  }
-
 
 }

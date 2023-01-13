@@ -7,6 +7,8 @@ import 'package:news_paper_app/app/widgets/custom_button.dart';
 class PhoneVerifyScreen extends StatelessWidget {
    PhoneVerifyScreen({Key? key}) : super(key: key);
   final registerController =Get.put(VerifyController());
+  var data=Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +65,7 @@ class PhoneVerifyScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "${Get.arguments}",
+                              data[2],
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Poppins',
@@ -96,10 +98,7 @@ class PhoneVerifyScreen extends StatelessWidget {
                       child: CustomButton(
                           label: "Send",
                           onPressed:(){
-                            controller.checkVerify(Get.arguments);
-                            //Get.offAllNamed(GetRoutes.signup);
-                            //CustomSnackbar("Test", "message: ${_fieldOne.text.toString()}${_fieldTwo.text.toString()}${_fieldThree.text.toString()}${_fieldFour.text.toString()}", "test");
-
+                            controller.checkVerify(data[0],data[1],data[2],data[3],data[4],data[5]);
                           }),
                     ),
                   ],
