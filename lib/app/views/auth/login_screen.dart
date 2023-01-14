@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffF2861E),
-        title: Text("data"),
+        title: Text("Login"),
       ),
       body: SingleChildScrollView(
         child: Padding(

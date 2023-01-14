@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:news_paper_app/app/controllers/navigation_controller.dart';
 import 'package:news_paper_app/app/views/account_screen.dart';
 import 'package:news_paper_app/app/views/home/home_screen.dart';
@@ -8,9 +9,7 @@ import 'package:news_paper_app/app/widgets/custom_bottom_nav_bar.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
-  NaviControllare naviControllare=Get.put(
-      NaviControllare());
-
+  NaviControllare naviControllare=Get.put(NaviControllare());
   final pages=[
     HomeScreen(),
     BookMarkScreen(),

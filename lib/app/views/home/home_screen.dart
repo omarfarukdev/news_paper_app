@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:news_paper_app/app/controllers/news_controller.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -31,7 +32,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children:controller.articles.map((articles) =>
                     Slidable(
-                        child: NewsList(articles:articles),
+                        child: NewsList(articles:articles,controller:controller),
                     )).toList(),
                   /*List.generate(111, (index) =>
                       Slidable(
@@ -47,16 +48,20 @@ class HomeScreen extends StatelessWidget {
   }
 }
 class NewsList extends StatelessWidget {
-   NewsList({Key? key,required this.articles}) : super(key: key);
+   NewsList({Key? key,required this.articles, required this.controller}) : super(key: key);
    final Articles articles;
-  var now;
-  String? formattedDate;
+   var now;
+   String? formattedDate;
+   final checkdata = GetStorage();
+   final NewsController controller;
+   late final date;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async{
         String dates=articles.publishedAt.toString();
-        final date = dates.split('T');
+        date = dates.split('T');
+        checkdata.write("first", "home");
         Get.toNamed(GetRoutes.details,arguments: [articles.source?.name,articles.author,articles.title,articles.description,articles.url,articles.urlToImage,date[0],articles.content],);
       },
       child: Container(
@@ -110,19 +115,25 @@ class NewsList extends StatelessWidget {
                     children: [
                       Container(
                         height: MediaQuery.of(context).size.height/5,
-                          child: Image.network(
-                            articles.urlToImage!,
-                            fit:BoxFit.fill ,
-                          ),
+                        decoration: BoxDecoration(
+                          image: articles.urlToImage!=null?
+                          DecorationImage(
+                              image: NetworkImage(articles.urlToImage!),fit: BoxFit.fill)
+                              :DecorationImage(
+                              image: AssetImage("assets/images/placeholder_basic.jpg",)),
+
+                        ),
                       ),
                       SizedBox(height: 10,),
-                      CustomButton(
-                          label: "Bookmark",
+                      IconButton(
                           onPressed: (){
-                            //controller.ForgotPassword();
-                            Get.offNamed(GetRoutes.login);
-                          }
-                          ),
+                            String dates=articles.publishedAt.toString();
+                            date = dates.split('T');
+                            checkdata.write("first", "home");
+                            controller.checkLogin(articles.source?.name,articles.author,articles.title,articles.description,articles.url,articles.urlToImage,date[0],articles.content);
+                          },
+                          icon: controller.check=="true"?Icon(Icons.bookmark,color: Colors.grey,):Icon(Icons.bookmark_border),
+                      ),
                     ],
                   )
               )

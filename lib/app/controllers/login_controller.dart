@@ -3,19 +3,21 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:news_paper_app/app/routes/routes.dart';
 import 'package:news_paper_app/app/utils/custom_snackbar.dart';
 import 'package:news_paper_app/app/widgets/loader.dart';
 
 class LoginController extends GetxController{
   late TextEditingController phoneController,passwordController;
 
-  final devicedata = GetStorage();
+  final checkdata = GetStorage();
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     phoneController = TextEditingController();
     passwordController = TextEditingController();
+    checkdata.writeIfNull('isLogged', false);
   }
   @override
   void onClose() {
@@ -45,6 +47,10 @@ class LoginController extends GetxController{
       if(snapshot.child("password").value==passwordController.text.toString()){
         CustomSnackbar("Success", "Login Successful", "success");
         //Navigator.pop(context);
+        checkdata.write("isLogged", true);
+        if(checkdata.read("from")=="details"){
+          Get.offNamed(GetRoutes.details);
+        }
       }
       print(snapshot.child("password").value);
     } else {

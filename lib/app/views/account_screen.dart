@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:news_paper_app/app/routes/routes.dart';
+import 'package:news_paper_app/app/widgets/custom_button.dart';
 
 class AccountScreen extends StatelessWidget {
-  const AccountScreen({Key? key}) : super(key: key);
-
+  AccountScreen({Key? key}) : super(key: key);
+  final checkdata = GetStorage();
   @override
   Widget build(BuildContext context) {
     Size size =MediaQuery.of(context).size;
@@ -15,7 +19,38 @@ class AccountScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("data")
+                CustomButton(
+                    label: "Logout",
+                    onPressed: (){
+                      //controller.ForgotPassword();
+                      showDialog(
+                        context: context,
+                        builder: (context)=>AlertDialog(
+                          title: Text("Logout?"),
+                          content: Text("Are you aure you want to logout?"),
+                          actions: [
+                            ElevatedButton(
+                                style:ElevatedButton
+                                    .styleFrom(
+                                    primary: Colors.red
+                                ),
+                                onPressed: (){
+                                  Navigator.pop(context);
+                                },
+                                child: Text("Cancel")),
+                            ElevatedButton(
+                                onPressed: (){
+                                  //await SharedPrefs().removeUser();
+                                  checkdata.write('isLogged', false);
+                                  Navigator.pop(context);
+                                  //Get.offAllNamed(GetRoutes.login);
+                                },
+                                child: Text("Confirm")),
+                          ],
+                        ),
+                      );
+                    }
+                ),
               ],
             ),
           ),
